@@ -88,7 +88,7 @@ class Cron
 
     /**
      * isSuspended
-     * 
+     *
      * @var boolean
      * @access protected
      */
@@ -121,14 +121,14 @@ class Cron
         }
 
         // extract error file
-        if (\strpos($command, '2>')) {
-            list($command, $errorFile) = \explode('2>', $command);
+        if (\strpos($command, '2>>')) {
+            list($command, $errorFile) = \explode('2>>', $command);
             $errorFile = \trim($errorFile);
         }
 
         // extract log file
-        if (\strpos($command, '>')) {
-            list($command, $logFile) = \explode('>', $command);
+        if (\strpos($command, '>>')) {
+            list($command, $logFile) = \explode('>>', $command);
             $logFile = \trim($logFile);
         }
 
@@ -410,7 +410,7 @@ class Cron
     {
         return $this->isSuspended;
     }
-    
+
     /**
      * Sets the value of isSuspended
      *
@@ -440,10 +440,10 @@ class Cron
 
         $cronLine .= $this->getExpression().' '.$this->command;
         if ('' != $this->logFile) {
-            $cronLine .= ' > '.$this->logFile;
+            $cronLine .= ' >> '.$this->logFile;
         }
         if ('' != $this->errorFile) {
-            $cronLine .= ' 2> '.$this->errorFile;
+            $cronLine .= ' 2>> '.$this->errorFile;
         }
         if ('' != $this->comment) {
             $cronLine .= ' #'.$this->comment;
